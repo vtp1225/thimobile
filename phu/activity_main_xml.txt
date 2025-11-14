@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quan ly nhan vien"
+        android:padding="8px"
+        android:background="#FF6C6C"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textSize="13pt"
+        android:textColor="@color/white"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="MaNV"
+        android:text="phu"
+        android:id="@+id/manvinp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TenNV"
+        android:text="phu"
+
+        android:id="@+id/teninp"
+        />
+    <EditText
+        android:text="12"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="He so luong"
+        android:id="@+id/hslinp"
+        android:inputType="number"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nam"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gioitinhcb"
+            />
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addbtn"
+        android:text="Them"
+        />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listnv"
+        />
+
+</LinearLayout>

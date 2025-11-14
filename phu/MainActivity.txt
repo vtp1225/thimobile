@@ -1,1 +1,107 @@
-commitTEst
+package com.example.vothienphu;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    private NhanVienAdapter adapter;
+    private EditText manv, ten, hsl;
+    private CheckBox gioitinhcb;
+    private ListView list;
+    private List<NhanVien> listnv= new ArrayList<NhanVien>();
+    private Button addbtn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        addControl();
+        addEvent();
+    }
+
+
+    private void addEvent() {
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NhanVien nv = new NhanVien();
+                nv.setMaNV(manv.getText().toString());
+                nv.setTenNV(ten.getText().toString());
+                nv.setHeSoLuong(Double.parseDouble(hsl.getText().toString()));
+                nv.setGioiTinh(gioitinhcb.isChecked()); // Gán trực tiếp sẽ gọn hơn
+                listnv.add(nv);
+                adapter.notifyDataSetChanged();
+                manv.setText("");
+                ten.setText("");
+                hsl.setText("");
+                gioitinhcb.setChecked(false);
+            }
+        });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NhanVien nv = listnv.get(position);
+                manv.setText(nv.getMaNV());
+                ten.setText(nv.getTenNV());
+                hsl.setText(String.valueOf(nv.getHeSoLuong()));
+                if (nv.isGioiTinh())
+                    gioitinhcb.setChecked(true);
+
+            }
+        });
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                NhanVien nv = listnv.get(position);
+                listnv.remove(nv);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+    }
+
+    private void addControl() {
+        manv = findViewById(R.id.manvinp);
+        ten = findViewById(R.id.teninp);
+        hsl = findViewById(R.id.hslinp);
+        gioitinhcb = findViewById(R.id.gioitinhcb);
+        adapter = new NhanVienAdapter(this, R.layout.items, listnv);
+
+        list = findViewById(R.id.listnv);
+        list.setAdapter(adapter);
+        addbtn = findViewById(R.id.addbtn);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if( resultCode == RESULT_OK){
+            NhanVien nv = (NhanVien) data.getSerializableExtra("nvmoi");
+            int pos = data.getIntExtra("position", -1);
+            listnv.set(pos,nv);
+            adapter.notifyDataSetChanged();
+        }
+    }
+}

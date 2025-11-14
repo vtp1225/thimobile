@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/manvhienthi"
+        android:text="001"
+        android:textSize="13pt"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:maxWidth="20pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="001"
+            android:id="@+id/tenhienthi"
+            android:layout_marginLeft="10pt"
+            android:textSize="8pt"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="001"
+            android:id="@+id/hslhienthi"
+            android:layout_marginLeft="10pt"
+            android:textSize="8pt"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="001"
+            android:id="@+id/gioitinhhienthi"
+            android:layout_marginLeft="10pt"
+            android:textSize="8pt"
+
+            />
+
+    </LinearLayout>
+    <Button
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/updatebtn"
+        android:text="update"
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt"
+        />
+    <Button
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deletebtn"
+        android:text="Delete"
+        />
+</LinearLayout>
